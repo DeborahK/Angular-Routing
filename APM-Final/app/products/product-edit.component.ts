@@ -34,6 +34,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(
             params => {
                 let id = +params['id'];
+                let operation = params['operation'];
+                if (operation==='add') {
+                    id = 0;
+                }
                 this.getProduct(id);
             }
         );

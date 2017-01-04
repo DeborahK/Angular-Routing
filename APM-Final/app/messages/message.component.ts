@@ -6,13 +6,13 @@ import { MessageService } from '../messages/message.service';
     template: `
         <h4>Message Log</h4>
         <div *ngFor="let message of messageService.messages; let i=index">
-            <div *ngIf="i<10" [ngClass]="{'alternate-row': i % 2 }">
+            <div *ngIf="i<10" class="message-row">
                 {{ message }}
             </div>
         </div>
     `,
     styles: [
-        '.alternate-row { color: gray; }'
+        '.message-row { margin-bottom: 10px }'
     ]
 })
 export class MessageComponent {
