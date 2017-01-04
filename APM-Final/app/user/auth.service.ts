@@ -5,6 +5,8 @@ import { IUser } from './user';
 @Injectable()
 export class AuthService {
     currentUser: IUser;
+    redirectUrl: string;
+
     isLoggedIn(): boolean {
         return !!this.currentUser;
     }

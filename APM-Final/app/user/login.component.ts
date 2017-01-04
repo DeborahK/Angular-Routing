@@ -12,7 +12,7 @@ export class LoginComponent {
     pageTitle = 'Log In';
 
     constructor(private authService: AuthService,
-                private router: Router) { }
+        private router: Router) { }
 
     login(loginForm: NgForm) {
         if (loginForm && loginForm.valid) {
@@ -20,7 +20,12 @@ export class LoginComponent {
             let password = loginForm.form.value.password;
             this.authService.login(userName, password);
 
-            this.router.navigate(['/products']);
+
+            if (this.authService.redirectUrl) {
+                this.router.navigate([this.authService.redirectUrl]);
+            } else {
+                this.router.navigate(['/products']);
+            }
         } else {
             this.errorMessage = 'Please enter a user name and password.';
         };

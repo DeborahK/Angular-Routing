@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ProductData }  from './product-data';
+import { ProductData } from './product-data';
 
 import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
@@ -13,7 +13,7 @@ import { ProductEditComponent } from './product-edit.component';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
 
-import { AuthGuardService } from '../user/auth-guard.service';
+import { AuthGuard } from '../user/auth-guard.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -22,16 +22,25 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     InMemoryWebApiModule.forRoot(ProductData),
     RouterModule.forChild([
-      { path: 'products',
-        canActivate: [ AuthGuardService],
-        component: ProductListComponent },
-      { path: 'product/:id',
-        canActivate: [ AuthGuardService],
-        component: ProductDetailComponent
-      },
-      { path: 'productEdit/:id',
-        canDeactivate: [ AuthGuardService, ProductEditGuard ],
-        component: ProductEditComponent },
+      {
+        path: '',                             // component-less route
+        canActivateChild: [AuthGuard],
+        children: [
+          {
+            path: 'products',
+            component: ProductListComponent
+          },
+          {
+            path: 'product/:id',
+            component: ProductDetailComponent
+          },
+          {
+            path: 'productEdit/:id',
+            canDeactivate: [ ProductEditGuard ],
+            component: ProductEditComponent
+          },
+        ]
+      }
     ])
   ],
   declarations: [
@@ -46,4 +55,4 @@ import { SharedModule } from '../shared/shared.module';
     ProductEditGuard
   ]
 })
-export class ProductModule {}
+export class ProductModule { }
