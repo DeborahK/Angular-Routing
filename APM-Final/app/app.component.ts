@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from './user/auth.service';
+
 @Component({
     selector: 'pm-app',
     templateUrl: 'app/app.component.html'
@@ -8,9 +10,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
     pageTitle: string = 'Acme Product Management';
 
-    constructor(private router: Router) { }
+    constructor(private authService: AuthService,
+                private router: Router) { }
 
-    loggedOut(message: string): void {
-        this.router.navigate(['/products']);
+    logOut(message: string): void {
+        this.authService.logout();
+        this.router.navigate(['/home']);
     }
 }

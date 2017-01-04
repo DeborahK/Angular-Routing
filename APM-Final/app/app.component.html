@@ -4,12 +4,22 @@
             <a class='navbar-brand'>{{pageTitle}}</a>
             <ul class='nav navbar-nav'>
                 <li><a [routerLink]="['/welcome']">Home</a></li>
+            </ul>
+            <ul class='nav navbar-nav' *ngIf="authService.isLoggedIn()">
                 <li><a [routerLink]="['/products']">Product List</a></li>
                 <li><a [routerLink]="['/productEdit/0']">Add Product</a></li>
             </ul>
-            <div class="navbar-right">
-                <pm-user (loggedOut)="loggedOut($event)"></pm-user>
-            </div>
+            <ul class='nav navbar-nav navbar-right'>
+                <li *ngIf="!authService.isLoggedIn()">
+                    <a [routerLink]="['/login']">Log In</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()">
+                    <a [routerLink]="['/login']">Welcome {{ authService.currentUser.userName }}</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()">
+                    <a (click)="logOut()">Log Out</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class='container'>

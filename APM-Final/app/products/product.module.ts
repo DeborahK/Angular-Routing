@@ -13,6 +13,8 @@ import { ProductEditComponent } from './product-edit.component';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
 
+import { AuthGuardService } from '../user/auth-guard.service';
+
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -20,13 +22,15 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     InMemoryWebApiModule.forRoot(ProductData),
     RouterModule.forChild([
-      { path: 'products', component: ProductListComponent },
+      { path: 'products',
+        canActivate: [ AuthGuardService],
+        component: ProductListComponent },
       { path: 'product/:id',
-        canActivate: [ ProductDetailGuard],
+        canActivate: [ AuthGuardService],
         component: ProductDetailComponent
       },
       { path: 'productEdit/:id',
-        canDeactivate: [ ProductEditGuard ],
+        canDeactivate: [ AuthGuardService, ProductEditGuard ],
         component: ProductEditComponent },
     ])
   ],
