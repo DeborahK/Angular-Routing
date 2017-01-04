@@ -28,11 +28,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.sub.unsubscribe();
     }
 
-    getProduct(id: number) {
+    getProduct(id: number): void {
         this.productService.getProduct(id).subscribe(
             product => this.product = product,
             error => this.errorMessage = <any>error);
