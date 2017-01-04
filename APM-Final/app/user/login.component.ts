@@ -20,7 +20,6 @@ export class LoginComponent {
             let password = loginForm.form.value.password;
             this.authService.login(userName, password);
 
-
             if (this.authService.redirectUrl) {
                 this.router.navigate([this.authService.redirectUrl]);
             } else {

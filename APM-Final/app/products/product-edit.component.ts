@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/merge';
 import { Subscription } from 'rxjs/Subscription';
+
+import { MessageService } from '../messages/message.service';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
@@ -23,8 +25,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private sub: Subscription;
 
     constructor(private route: ActivatedRoute,
-                private router: Router,
-                private productService: ProductService) { }
+        private router: Router,
+        private productService: ProductService,
+        private messageService: MessageService) { }
 
     ngOnInit(): void {
         // Read the product Id from the route parameter
@@ -43,8 +46,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     getProduct(id: number): void {
         this.productService.getProduct(id)
             .subscribe(
-                (product: IProduct) => this.onProductRetrieved(product),
-                (error: any) => this.errorMessage = <any>error
+            (product: IProduct) => this.onProductRetrieved(product),
+            (error: any) => this.errorMessage = <any>error
             );
     }
 
@@ -64,12 +67,12 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     deleteProduct(): void {
         if (this.product.id === 0) {
             // Don't delete, it was never saved.
-            this.onSaveComplete();
-       } else {
+            this.onSaveComplete(`${this.product.productName} was deleted`);
+        } else {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(
-                        () => this.onSaveComplete(),
+                        () => this.onSaveComplete(`${this.product.productName} was deleted`),
                         (error: any) => this.errorMessage = <any>error
                     );
             }
@@ -80,7 +83,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         if (this.productForm.dirty && this.productForm.valid) {
             this.productService.saveProduct(this.product)
                 .subscribe(
-                    () => this.onSaveComplete(),
+                    () => this.onSaveComplete(`${this.product.productName} was saved`),
                     (error: any) => this.errorMessage = <any>error
                 );
         } else if (!this.productForm.dirty) {
@@ -88,9 +91,13 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         }
     }
 
-    onSaveComplete(): void {
+    onSaveComplete(message?: string): void {
         // Reset the form to clear the flags
         this.productForm.reset();
+        if (message) {
+            this.messageService.addMessage(message);
+        }
+
         this.router.navigate(['/products']);
     }
 }

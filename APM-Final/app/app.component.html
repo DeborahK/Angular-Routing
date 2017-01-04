@@ -11,7 +11,7 @@
             </ul>
             <ul class='nav navbar-nav navbar-right'>
                 <li *ngIf="!authService.isLoggedIn()">
-                    <a [routerLink]="['/login']">Log In</a>
+                    <a (click)="logIn()">Log In</a>
                 </li>
                 <li *ngIf="authService.isLoggedIn()">
                     <a [routerLink]="['/login']">Welcome {{ authService.currentUser.userName }}</a>
@@ -23,6 +23,13 @@
         </div>
     </nav>
     <div class='container'>
-        <router-outlet></router-outlet>
+        <div class="row">
+            <div class="col-md-10">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="col-md-2">
+                <router-outlet name="popup"></router-outlet>
+            </div>
+        </div>
     </div>
 </div>

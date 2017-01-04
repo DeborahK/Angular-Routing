@@ -13,6 +13,11 @@ export class AppComponent {
     constructor(private authService: AuthService,
                 private router: Router) { }
 
+    logIn(): void {
+        //this.router.navigate(['/login', { outlets: { popup: ['messages'] } }]);
+        this.router.navigateByUrl('/login(popup:messages)');
+    }
+
     logOut(message: string): void {
         this.authService.logout();
         this.router.navigate(['/home']);

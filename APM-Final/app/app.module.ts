@@ -9,6 +9,7 @@ import { WelcomeComponent } from './home/welcome.component';
 /* Feature Modules */
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
+import { MessageModule } from './messages/message.module';
 
 @NgModule({
   imports: [
@@ -16,11 +17,12 @@ import { UserModule } from './user/user.module';
     HttpModule,
     ProductModule,
     UserModule,
+    MessageModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ])
+    ],  {enableTracing: true} )
   ],
   declarations: [
     AppComponent,
