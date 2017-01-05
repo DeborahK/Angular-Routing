@@ -13,7 +13,7 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-edit.component.html'
+    templateUrl: './app/products/product-edit.component.html'
 })
 export class ProductEditComponent implements OnInit, OnDestroy {
     @ViewChild(NgForm) productForm: NgForm;

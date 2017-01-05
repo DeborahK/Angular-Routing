@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Component({
-    templateUrl: 'app/user/login.component.html'
+    templateUrl: './app/user/login.component.html'
 })
 export class LoginComponent {
     errorMessage: string;

@@ -5,7 +5,7 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-detail.component.html'
+    templateUrl: './app/products/product-detail.component.html'
 })
 export class ProductDetailComponent implements OnInit {
     pageTitle: string = 'Product Detail';
@@ -29,7 +29,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     onBack(): void {
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products'], { preserveQueryParams: true });
     }
 
     onRatingClicked(message: string): void {

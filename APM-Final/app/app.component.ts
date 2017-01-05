@@ -5,7 +5,7 @@ import { AuthService } from './user/auth.service';
 
 @Component({
     selector: 'pm-app',
-    templateUrl: 'app/app.component.html'
+    templateUrl: './app/app.component.html'
 })
 export class AppComponent {
     pageTitle: string = 'Acme Product Management';

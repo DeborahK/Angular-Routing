@@ -1,11 +1,12 @@
 import { Component, OnInit }  from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-list.component.html',
-    styleUrls: ['app/products/product-list.component.css']
+    templateUrl: './app/products/product-list.component.html',
+    styleUrls: ['./app/products/product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
@@ -17,15 +18,16 @@ export class ProductListComponent implements OnInit {
 
     products: IProduct[];
 
-    constructor(private productService: ProductService) {
-
-    }
+    constructor(private productService: ProductService,
+                private route: ActivatedRoute) { }
 
     toggleImage(): void {
         this.showImage = !this.showImage;
     }
 
     ngOnInit(): void {
+        this.listFilter = this.route.snapshot.queryParams['filter'];
+        this.showImage = !!this.route.snapshot.queryParams['showImage'];
         this.productService.getProducts()
                 .subscribe(products => this.products = products,
                            error => this.errorMessage = <any>error);
