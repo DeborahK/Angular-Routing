@@ -20,6 +20,6 @@ export class AppComponent {
 
     logOut(message: string): void {
         this.authService.logout();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/welcome']);
     }
 }
