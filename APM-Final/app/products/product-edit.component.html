@@ -21,15 +21,17 @@
             <button class="col-md-1 btn btn-default"
                     style="margin-left:15px;"
                     (click)="goBack()"
-                    [hidden]="!isBackValid()">
+                    [disabled]="disableBack()">
                 <span class="glyphicon glyphicon-chevron-left" style="font-size:12px"></span>
                 Back
             </button>
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-2">
                 <span>
                     <button class="btn btn-primary"
-                            type="submit"
-                            style="width:80px;margin-right:10px">
+                            type="button"
+                            style="width:80px;margin-right:10px"
+                            [disabled]=!enableSave
+                            (click)="saveProduct()">
                         Save
                     </button>
                 </span>
@@ -51,7 +53,7 @@
             <button class="col-md-1 btn btn-default pull-right"
                     style="margin-right:15px;"
                     (click)="goForward()"
-                    [hidden]="!isForwardValid()">
+                    [disabled]="disableForward()">
                 Next
                 <span class="glyphicon glyphicon-chevron-right" style="font-size:12px"></span>
             </button>

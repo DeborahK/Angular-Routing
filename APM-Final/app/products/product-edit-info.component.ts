@@ -1,28 +1,29 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { MessageService } from '../messages/message.service';
-
 import { IProduct } from './product';
-import { ProductService } from './product.service';
+import { ProductEditService } from './product-edit.service';
 
 @Component({
     templateUrl: './app/products/product-edit-info.component.html'
 })
-export class ProductEditInfoComponent {
+export class ProductEditInfoComponent implements OnInit, OnDestroy {
     @ViewChild(NgForm) productForm: NgForm;
-
     errorMessage: string;
 
-    product: IProduct;
+    get product(): IProduct {
+        return this.productEditService.product;
+    }
 
     constructor(private route: ActivatedRoute,
-        private router: Router,
-        private productService: ProductService,
-        private messageService: MessageService) { }
+                private productEditService: ProductEditService) { }
 
     ngOnInit(): void {
-        this.product = this.route.parent.snapshot.data['product'];
+        this.productEditService.setup(this.productForm, this.route);
+    }
+
+    ngOnDestroy(): void {
+        this.productEditService.tearDown();
     }
 }
