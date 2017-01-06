@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { MessageComponent } from "./message.component";
+import { MessageComponent } from './message.component';
 import { MessageService } from './message.service';
 
 @NgModule({

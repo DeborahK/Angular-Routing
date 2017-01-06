@@ -25,7 +25,7 @@ export class ProductService {
 
     getProduct(id: number): Observable<IProduct> {
         if (id === 0) {
-        return Observable.of(this.initializeProduct());
+            return Observable.of(this.initializeProduct());
         };
         const url = `${this.baseUrl}/${id}`;
         return this.http.get(url)

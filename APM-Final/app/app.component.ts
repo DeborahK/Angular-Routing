@@ -14,7 +14,7 @@ export class AppComponent {
                 private router: Router) { }
 
     logIn(): void {
-        //this.router.navigate(['/login', { outlets: { popup: ['messages'] } }]);
+        // this.router.navigate(['/login', { outlets: { popup: ['messages'] } }]);
         this.router.navigateByUrl('/login(popup:messages)');
     }
 

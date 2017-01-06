@@ -7,7 +7,8 @@
             </ul>
             <ul class='nav navbar-nav' *ngIf="authService.isLoggedIn()">
                 <li><a [routerLink]="['/products']">Product List</a></li>
-                <li><a [routerLink]="['/productEdit', -1, {operation: 'add'}]">Add Product</a></li>
+                <li><a [routerLink]="['/productEdit', 0]">Add Product</a></li>
+                <!--<li><a [routerLink]="['/productEdit', -1, {operation: 'add'}]">Add Product</a></li>-->
             </ul>
             <ul class='nav navbar-nav navbar-right'>
                 <li *ngIf="!authService.isLoggedIn()">
