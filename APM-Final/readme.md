@@ -2,16 +2,14 @@
 ## Description
 
 The routing in this reference application demonstrates: 
- - FormControls, FormGroups, FormArrays
- - Basic validation
- - Custom validation
- - Generic validation (including blur)
- - Display of validation messages
- - Dynamically adding input elements
- - Passing route parameters
+ - Routing Basics
+ - Routing to Features
+ - Route Parameters
+ - Tracing, styling, and animating routes
+ - Child routes
+ - Secondary routes
  - Route guards (including confirmation when navigating away with unsaved changes)
- - Populating the form data from Http using Observables
- - Basic CRUD operations: Create, Read, Update, and Delete.
+ - Lazy loaing and asynchronous routing
 
 ## Installation
 
