@@ -1,6 +1,10 @@
 // Child routing component
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import { MessageService } from '../messages/message.service';
 
@@ -13,15 +17,22 @@ import { ProductEditService } from './product-edit.service';
     styleUrls: ['./app/products/product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+    @ViewChild(NgForm) productForm: NgForm;
+
     pageTitle: string = 'Product Edit';
     errorMessage: string;
+
+    private resolveSub: Subscription;
 
     get product(): IProduct {
         return this.productEditService.product;
     }
 
-    get enableSave(): boolean {
-        return this.productEditService.allFormsValid();
+    private get currentRoute(): string {
+        if (this.route.firstChild.snapshot) {
+            return this.route.firstChild.snapshot.url.join('');
+        }
+        return '';
     }
 
     constructor(private route: ActivatedRoute,
@@ -31,8 +42,20 @@ export class ProductEditComponent implements OnInit {
         private messageService: MessageService) { }
 
     ngOnInit(): void {
-        this.productEditService.setup(null, this.route);
+        // // Read the product Id from the route parameter
+        // this.route.params.subscribe(
+        //     params => {
+        //         let id = +params['id'];
+        //         this.getProduct(id);
+        //     }
+        // );
 
+        // Watch for changes to the resolve data
+        this.resolveSub = this.route.data.subscribe(data => {
+            this.productEditService.product = data['product'];
+        });
+
+        // Adjust the title
         if (this.product.id === 0) {
             this.pageTitle = 'Add Product';
         } else {
@@ -41,7 +64,7 @@ export class ProductEditComponent implements OnInit {
     }
 
     goBack(): void {
-        switch (this.productEditService.currentRoute) {
+        switch (this.currentRoute) {
             case 'info':
                 this.router.navigate(['info'], { relativeTo: this.route });
                 break;
@@ -54,7 +77,7 @@ export class ProductEditComponent implements OnInit {
     }
 
     goForward(): void {
-        switch (this.productEditService.currentRoute) {
+        switch (this.currentRoute) {
             case 'info':
                 this.router.navigate(['tags'], { relativeTo: this.route });
                 break;
@@ -67,14 +90,14 @@ export class ProductEditComponent implements OnInit {
     }
 
     disableBack(): boolean {
-        if (this.productEditService.currentRoute === 'info') {
+        if (this.currentRoute === 'info') {
             return true;
         }
         return false;
     }
 
     disableForward(): boolean {
-        if (this.productEditService.currentRoute === 'tags') {
+        if (this.currentRoute === 'tags') {
             return true;
         }
         return false;
@@ -88,15 +111,15 @@ export class ProductEditComponent implements OnInit {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(
-                        () => this.onSaveComplete(`${this.product.productName} was deleted`),
-                        (error: any) => this.errorMessage = <any>error
+                    () => this.onSaveComplete(`${this.product.productName} was deleted`),
+                    (error: any) => this.errorMessage = <any>error
                     );
             }
         }
     }
 
     saveProduct(): void {
-        if (this.productEditService.allFormsValid()) {
+        if (this.productForm.valid) {
             this.productService.saveProduct(this.product)
                 .subscribe(
                 () => this.onSaveComplete(`${this.product.productName} was saved`),

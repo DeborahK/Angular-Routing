@@ -1,35 +1,33 @@
 <div class="panel-body">
-    <form class="form-horizontal" name="productForm" novalidate>
-        <fieldset>
-            <legend>Product Search Tags</legend>
-            <div class="form-group">
-                <label class="col-md-2 control-label" for="inputSearchTags">Search Tags</label>
-                <div class="col-md-8">
-                    <input class="form-control" name="inputSearchTags" type="text"
-                        placeholder="Product search keywords separated by commas"
-                        required
-                        [(ngModel)]="product.tags" />
-                </div>
-                <div class="col-md-1">
-                    <button type="button"
-                            class="btn btn-default"
-                            title="Add the specified tags"
-                            (click)="addTags()">
-                        Add
-                    </button>
-                </div>
+    <fieldset>
+        <legend>Product Search Tags</legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="inputSearchTags">Search Tags</label>
+            <div class="col-md-8">
+                <input class="form-control" name="inputSearchTags" type="text"
+                    placeholder="Product search keywords separated by commas"
+                    required
+                    [(ngModel)]="product.tags" />
             </div>
-            <div class="row col-md-8 col-md-offset-2">
-                <span *ngFor="let tag of product.tags; let i = index">
-                    <button class="btn btn-default"
-                            style="font-size:smaller;margin-bottom:12px"
-                            (click)="removeTag(i)">
-                        {{tag}}
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </span>
+            <div class="col-md-1">
+                <button type="button"
+                        class="btn btn-default"
+                        title="Add the specified tags"
+                        (click)="addTags()">
+                    Add
+                </button>
             </div>
-            <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
-        </fieldset>
-    </form>
+        </div>
+        <div class="row col-md-8 col-md-offset-2">
+            <span *ngFor="let tag of product.tags; let i = index">
+                <button class="btn btn-default"
+                        style="font-size:smaller;margin-bottom:12px"
+                        (click)="removeTag(i)">
+                    {{tag}}
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </div>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </fieldset>
 </div>

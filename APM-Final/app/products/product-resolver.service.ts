@@ -12,6 +12,7 @@ export class ProductResolver implements Resolve<IProduct> {
     constructor(private productService: ProductService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProduct> {
+        console.log("In resolve");
         let id = +route.params['id'];
         return this.productService.getProduct(id);
     }
