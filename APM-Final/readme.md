@@ -1,7 +1,7 @@
 
 ## Description
 
-The edit form in this reference application demonstrates: 
+The routing in this reference application demonstrates: 
  - FormControls, FormGroups, FormArrays
  - Basic validation
  - Custom validation
