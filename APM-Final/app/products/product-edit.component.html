@@ -6,19 +6,16 @@
     <div class="panel-body">
         <div class="wizard">
             <a [routerLink]="['info']">
-                Basic Information
+                Basic Information  <span [ngClass]="{'glyphicon glyphicon-exclamation-sign':
+                                                      !productEditService.isValid('info')}"></span>
             </a>
             <a [routerLink]="['tags']">
-                Search Tags
+                Search Tags  <span  [ngClass]="{'glyphicon glyphicon-exclamation-sign':
+                                                      !productEditService.isValid('tags')}"></span>
             </a>
         </div>
 
-        <form class="form-horizontal"
-              novalidate
-              (ngSubmit)="saveProduct()"
-              #productForm="ngForm" >
-            <router-outlet></router-outlet>
-        </form>
+        <router-outlet></router-outlet>
     </div>
                 
     <div class="panel-footer">
@@ -35,7 +32,7 @@
                     <button class="btn btn-primary"
                             type="button"
                             style="width:80px;margin-right:10px"
-                            [disabled]=!productForm.valid
+                            [disabled]=!productEditService.isValid()
                             (click)="saveProduct()">
                         Save
                     </button>

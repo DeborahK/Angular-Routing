@@ -14,4 +14,8 @@ export class ProductEditInfoComponent {
     }
 
     constructor(private productEditService: ProductEditService) { }
+
+    ngOnInit(): void {
+        // Watch for changes to the form
+    }
 }

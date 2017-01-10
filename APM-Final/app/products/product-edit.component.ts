@@ -34,7 +34,7 @@ export class ProductEditComponent implements OnInit {
     constructor(private route: ActivatedRoute,
         private router: Router,
         private productService: ProductService,
-        private productEditService: ProductEditService,
+        public productEditService: ProductEditService,
         private messageService: MessageService) { }
 
     ngOnInit(): void {
@@ -116,7 +116,7 @@ export class ProductEditComponent implements OnInit {
 
     saveProduct(): void {
         // Should check for validation errors here
-        if (true===true) {
+        if (true === true) {
             this.productService.saveProduct(this.product)
                 .subscribe(
                 () => this.onSaveComplete(`${this.product.productName} was saved`),
