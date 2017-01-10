@@ -13,12 +13,7 @@
             </a>
         </div>
 
-        <form class="form-horizontal"
-              novalidate
-              (ngSubmit)="saveProduct()"
-              [formGroup]="productForm" >
-            <router-outlet></router-outlet>
-        </form>
+        <router-outlet></router-outlet>
     </div>
                 
     <div class="panel-footer">
@@ -35,7 +30,7 @@
                     <button class="btn btn-primary"
                             type="button"
                             style="width:80px;margin-right:10px"
-                            [disabled]=!productForm.valid
+                            [disabled]=!productEditService.productFormsValid
                             (click)="saveProduct()">
                         Save
                     </button>
@@ -68,6 +63,3 @@
     <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
 
 </div>
-{{ productForm.value | json }}
-Dirty: {{ productForm.dirty }}
-Valid: {{ productForm.valid }}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { IProduct } from './product';
 import { ProductEditService } from './product-edit.service';
@@ -6,7 +7,9 @@ import { ProductEditService } from './product-edit.service';
 @Component({
     templateUrl: './app/products/product-edit-tags.component.html'
 })
-export class ProductEditTagsComponent {
+export class ProductEditTagsComponent implements OnInit {
+    @ViewChild(NgForm) productForm: NgForm;
+
     errorMessage: string;
     newTags = '';
 
@@ -15,6 +18,11 @@ export class ProductEditTagsComponent {
     }
 
     constructor(private productEditService: ProductEditService) { }
+
+    ngOnInit(): void {
+        // Register the form with the edit service
+        this.productEditService.register(this.productForm);
+    }
 
     // Add the defined tags
     addTags(): void {
