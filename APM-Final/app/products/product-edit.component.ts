@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 
 import { MessageService } from '../messages/message.service';
 
@@ -61,6 +60,7 @@ export class ProductEditComponent implements OnInit {
         } else {
             this.pageTitle = `Edit Product: ${this.product.productName}`;
         }
+        console.log(this.productForm);
     }
 
     goBack(): void {

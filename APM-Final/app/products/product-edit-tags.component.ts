@@ -8,7 +8,7 @@ import { ProductEditService } from './product-edit.service';
 })
 export class ProductEditTagsComponent {
     errorMessage: string;
-    newTags = "";
+    newTags = '';
 
     get product(): IProduct {
         return this.productEditService.product;
@@ -18,9 +18,10 @@ export class ProductEditTagsComponent {
 
     // Add the defined tags
     addTags(): void {
-        var array = this.newTags.split(',');
-        this.productEditService.product.tags = this.product.tags ? this.product.tags.concat(array) : array;
-        this.newTags = "";
+        let tagArray = this.newTags.split(',');
+        console.log(this.product.tags);
+        this.productEditService.product.tags = this.product.tags ? this.product.tags.concat(tagArray) : tagArray;
+        this.newTags = '';
     }
 
     // Remove the tag from the array of tags.

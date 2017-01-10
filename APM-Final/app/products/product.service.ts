@@ -88,7 +88,7 @@ export class ProductService {
             id: 0,
             productName: null,
             productCode: null,
-            tags: [''],
+            tags: [],
             releaseDate: null,
             price: null,
             description: null,
