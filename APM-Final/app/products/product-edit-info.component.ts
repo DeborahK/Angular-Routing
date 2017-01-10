@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductEditService } from './product-edit.service';
@@ -7,9 +6,7 @@ import { ProductEditService } from './product-edit.service';
 @Component({
     templateUrl: './app/products/product-edit-info.component.html'
 })
-export class ProductEditInfoComponent implements OnInit {
-    @ViewChild(NgForm) productForm: NgForm;
-
+export class ProductEditInfoComponent {
     errorMessage: string;
 
     get product(): IProduct {
@@ -17,9 +14,4 @@ export class ProductEditInfoComponent implements OnInit {
     }
 
     constructor(private productEditService: ProductEditService) { }
-
-    ngOnInit(): void {
-        // Register the form with the edit service
-        this.productEditService.register(this.productForm);
-    }
 }
