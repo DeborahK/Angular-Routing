@@ -16,7 +16,7 @@
         <form class="form-horizontal"
               novalidate
               (ngSubmit)="saveProduct()"
-              #productForm="ngForm" >
+              [formGroup]="productForm" >
             <router-outlet></router-outlet>
         </form>
     </div>
@@ -69,3 +69,5 @@
 
 </div>
 {{ productForm.value | json }}
+Dirty: {{ productForm.dirty }}
+Valid: {{ productForm.valid }}

@@ -1,10 +1,10 @@
 <div class="panel-body">
-    <fieldset>
+    <fieldset formGroupName="infoGroup">
         <legend>Basic Product Information</legend>
         <div class="form-group" 
-                [ngClass]="{'has-error': (productNameVar.touched || 
-                                        productNameVar.dirty) && 
-                                        !productNameVar.valid }">
+                [ngClass]="{'has-error': (productForm.get('productName').touched || 
+                                        productForm.get('productName').dirty) && 
+                                        !productForm.get('productName').valid }">
             <label class="col-md-2 control-label" 
                     for="productNameId">Product Name</label>
 
@@ -15,16 +15,14 @@
                         placeholder="Name (required)"
                         required
                         minlength="3"
-                        [(ngModel)] = product.productName
-                        name="productName"
-                        #productNameVar="ngModel" />
-                <span class="help-block" *ngIf="(productNameVar.touched ||
-                                                    productNameVar.dirty) &&
-                                                    productNameVar.errors">
-                    <span *ngIf="productNameVar.errors.required">
+                        formControlName='productName' />
+                <span class="help-block" *ngIf="(productForm.get('productName').touched ||
+                                                    productForm.get('productName').dirty) &&
+                                                    productForm.get('productName').errors">
+                    <span *ngIf="productForm.get('productName').errors.required">
                         Product name is required.
                     </span>
-                    <span *ngIf="productNameVar.errors.minlength">
+                    <span *ngIf="productForm.get('productName').errors.minlength">
                         Product name must be at least three characters.
                     </span>
                 </span>
@@ -32,9 +30,9 @@
         </div>
         
         <div class="form-group" 
-                [ngClass]="{'has-error': (productCodeVar.touched || 
-                                        productCodeVar.dirty) && 
-                                        !productCodeVar.valid }">
+                [ngClass]="{'has-error': (productForm.get('productCode').touched || 
+                                        productForm.get('productCode').dirty) && 
+                                        !productForm.get('productCode').valid }">
             <label class="col-md-2 control-label" for="productCodeId">Product Code</label>
 
             <div class="col-md-8">
@@ -43,13 +41,11 @@
                         type="text" 
                         placeholder="Code (required)"
                         required
-                        [(ngModel)] = product.productCode
-                        name="productCode"
-                        #productCodeVar="ngModel" />
-                <span class="help-block" *ngIf="(productCodeVar.touched ||
-                                                    productCodeVar.dirty) &&
-                                                    productCodeVar.errors">
-                    <span *ngIf="productCodeVar.errors.required">
+                        formControlName='productCode' />
+                <span class="help-block" *ngIf="(productForm.get('productCode').touched ||
+                                                    productForm.get('productCode').dirty) &&
+                                                    productForm.get('productCode').errors">
+                    <span *ngIf="productForm.get('productCode').errors.required">
                         Product code is required.
                     </span>
                 </span>
@@ -64,8 +60,7 @@
                         id="descriptionId" 
                         placeholder="Description"
                         rows=3
-                        [(ngModel)] = product.description
-                        name="description"></textarea>
+                        formControlName="description"></textarea>
             </div>
         </div>
 

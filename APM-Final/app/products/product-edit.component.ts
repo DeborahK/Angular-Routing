@@ -1,7 +1,7 @@
 // Child routing component
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -16,7 +16,6 @@ import { ProductEditService } from './product-edit.service';
     styleUrls: ['./app/products/product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-    @ViewChild(NgForm) productForm: NgForm;
 
     pageTitle: string = 'Product Edit';
     errorMessage: string;
@@ -25,6 +24,10 @@ export class ProductEditComponent implements OnInit {
 
     get product(): IProduct {
         return this.productEditService.product;
+    }
+
+    get productForm(): FormGroup {
+        return this.productEditService.productForm;
     }
 
     private get currentRoute(): string {

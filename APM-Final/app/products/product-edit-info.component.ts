@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { IProduct } from './product';
 import { ProductEditService } from './product-edit.service';
@@ -11,6 +12,10 @@ export class ProductEditInfoComponent {
 
     get product(): IProduct {
         return this.productEditService.product;
+    }
+
+    get productForm(): FormGroup {
+        return this.productEditService.productForm;
     }
 
     constructor(private productEditService: ProductEditService) { }
