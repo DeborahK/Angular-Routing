@@ -88,12 +88,13 @@ export class ProductService {
             id: 0,
             productName: null,
             productCode: null,
+            category: null,
             tags: [],
             releaseDate: null,
             price: null,
             description: null,
             starRating: null,
-            imageUrl: null
+            imageUrl: null,
         };
     }
 }

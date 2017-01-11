@@ -15,7 +15,6 @@ import { ProductService } from './product.service';
 import { ProductEditComponent } from './product-edit.component';
 import { ProductEditInfoComponent } from './product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit-tags.component';
-import { ProductEditService } from './product-edit.service';
 
 // import { AuthGuard } from '../user/auth-guard.service';
 
@@ -37,7 +36,7 @@ import { SharedModule } from '../shared/shared.module';
       },
       {
         path: 'productEdit/:id',
-        // canDeactivate: [ProductEditGuard],
+        canDeactivate: [ProductEditGuard],
         resolve: { product: ProductResolver },
         component: ProductEditComponent,
         children: [
@@ -69,7 +68,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     ProductService,
-    ProductEditService,
     ProductDetailGuard,
     ProductEditGuard,
     ProductResolver

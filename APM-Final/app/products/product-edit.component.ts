@@ -12,13 +12,20 @@ import { ProductEditService } from './product-edit.service';
 
 @Component({
     templateUrl: './app/products/product-edit.component.html',
-    styleUrls: ['./app/products/product-edit.component.css']
+    styleUrls: ['./app/products/product-edit.component.css'],
+  providers: [
+    ProductEditService,
+  ]
 })
 export class ProductEditComponent implements OnInit {
     pageTitle: string = 'Product Edit';
     errorMessage: string;
 
     private resolveSub: Subscription;
+
+    get isDirty(): boolean {
+        return this.productEditService.isDirty;
+    }
 
     get product(): IProduct {
         return this.productEditService.product;
@@ -34,7 +41,7 @@ export class ProductEditComponent implements OnInit {
     constructor(private route: ActivatedRoute,
         private router: Router,
         private productService: ProductService,
-        public productEditService: ProductEditService,
+        private productEditService: ProductEditService,
         private messageService: MessageService) { }
 
     ngOnInit(): void {
@@ -131,6 +138,7 @@ export class ProductEditComponent implements OnInit {
         if (message) {
             this.messageService.addMessage(message);
         }
+        this.productEditService.reset();
         this.router.navigate(['/products']);
     }
 }

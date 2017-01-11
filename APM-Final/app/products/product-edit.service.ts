@@ -15,27 +15,30 @@ export class ProductEditService {
     set product(value: IProduct) {
         this.currentProduct = value;
         // Clone the object to retain a copy
-        if (!this.originalProduct) {
-            this.originalProduct = Object.assign({}, value);
-        }
+        this.originalProduct = Object.assign({}, value);
     }
 
     get isDirty(): boolean {
-        return Object.is(this.originalProduct, this.product);
+        return JSON.stringify(this.originalProduct) !== JSON.stringify(this.currentProduct);
     }
 
-    isValid(path?: string): boolean {
-        console.log(this.dataIsValid);
+    // Reset the properties
+    reset(): void {
+        this.dataIsValid = {};
+        this.currentProduct = null;
+        this.originalProduct = null;
+    }
+
+    isValid(path: string): boolean {
         this.validate();
         if (path) {
-            return this.dataIsValid[path]
+            return this.dataIsValid[path];
         }
         return (this.dataIsValid &&
                 Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
     }
 
     validate(): void {
-        console.log("In validate " + Date.now());
         // Clear the validation object
         this.dataIsValid = {};
 
