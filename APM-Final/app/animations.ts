@@ -13,13 +13,20 @@ export const slideInOutAnimation: AnimationEntryMetadata =
                 opacity: 0,
                 transform: 'translateX(-100%)'
             }),
-            animate('0.2s ease-in')
+            animate(1000)
         ]),
-        transition(':leave', [
-            style({
-                opacity: 0,
-                transform: 'translateX(100%)'
-            }),
-            animate('0.2s ease-out')
-        ])
+        transition(':leave',
+            animate(1000,
+                style({
+                    transform: 'translateX(100%)',
+                    opacity: 0
+                })))
+        // ,
+        // transition('* => void', [
+        //     style({
+        //         opacity: 0,
+        //         transform: 'translateX(100%)'
+        //     }),
+        //     animate(1000)
+        // ])
     ]);

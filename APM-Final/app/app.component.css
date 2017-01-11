@@ -9,3 +9,20 @@ div.panel-heading {
 li { 
     cursor: pointer; 
 }
+
+pm-app * {
+    animation-duration: 1s;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

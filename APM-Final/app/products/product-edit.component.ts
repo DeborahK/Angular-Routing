@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { slideInOutAnimation } from '../animations';
 import { MessageService } from '../messages/message.service';
 
 import { IProduct } from './product';
@@ -13,9 +14,17 @@ import { ProductEditService } from './product-edit.service';
 @Component({
     templateUrl: './app/products/product-edit.component.html',
     styleUrls: ['./app/products/product-edit.component.css'],
-  providers: [
-    ProductEditService,
-  ]
+    providers: [
+        ProductEditService,
+    ],
+    host: {
+        '[@routeAnimation]': 'true',
+        '[style.display]': "'block'",
+        '[style.position]': "'absolute'",
+        '[style.left]': "'0'",
+        '[style.right]': "'0'"
+    },
+    animations: [slideInOutAnimation]
 })
 export class ProductEditComponent implements OnInit {
     pageTitle: string = 'Product Edit';
