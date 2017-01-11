@@ -11,18 +11,21 @@ li {
 }
 
 pm-app * {
-    animation-duration: 1s;
+    animation-duration: .5s;
     opacity: 0;
     animation-name: fadeIn;
     animation-fill-mode: forwards;
+    transition: transform .5s ease;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    /*transform: translate(-200px);*/
   }
 
   to {
     opacity: 1;
+    /*transform: translate(0px);*/
   }
 }
