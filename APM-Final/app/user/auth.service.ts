@@ -11,12 +11,12 @@ export class AuthService {
     constructor(private messageService: MessageService) { }
 
     isLoggedIn(): boolean {
-        this.currentUser = {
-            id: 2,
-            userName: 'Deb',
-            isAdmin: false
-        };        return true;
-        // return !!this.currentUser;
+        // this.currentUser = {
+        //     id: 2,
+        //     userName: 'Deb',
+        //     isAdmin: false
+        // };        return true;
+        return !!this.currentUser;
     }
 
     login(userName: string, password: string): void {

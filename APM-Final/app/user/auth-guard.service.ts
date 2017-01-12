@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, CanActivateChild, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route,
+         CanActivate, CanActivateChild, CanLoad } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
 @Injectable()
-export  class AuthGuard implements CanActivate, CanActivateChild {
+export  class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private authService: AuthService,
                 private router: Router) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        return true;
-        // if (this.authService.isLoggedIn()) {
-        //     return true;
-        // }
-
-        // // Retain the attempted URL for redirection
-        // this.authService.redirectUrl = state.url;
-        // this.router.navigate(['/login']);
-        // return false;
+        return this.checkLoggedIn(state.url);
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        return this.canActivate(route, state);
+        return this.checkLoggedIn(state.url);
+    }
+
+    canLoad(route: Route): boolean {
+        return this.checkLoggedIn(route.path);
+    }
+
+    checkLoggedIn(url: string): boolean {
+        if (this.authService.isLoggedIn()) {
+            return true;
+        }
+
+        // Retain the attempted URL for redirection
+        this.authService.redirectUrl = url;
+        this.router.navigate(['/login']);
+        return false;
     }
 }
