@@ -15,7 +15,7 @@ export class AppComponent {
                 private router: Router) {
 
         router.events.subscribe((routerEvent: Event) => {
-            this.watchRoutes(routerEvent);
+            this.checkRouterEvent(routerEvent);
         });
     }
 
@@ -29,10 +29,10 @@ export class AppComponent {
         this.router.navigate(['/welcome']);
     }
 
-    watchRoutes(routerEvent: Event): void {
+    checkRouterEvent(routerEvent: Event): void {
         if (routerEvent instanceof NavigationStart) {
             this.loading = true;
-        } 
+        }
 
         if (routerEvent instanceof NavigationEnd ||
             routerEvent instanceof NavigationCancel ||
