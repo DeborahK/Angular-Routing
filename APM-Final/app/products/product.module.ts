@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -23,19 +24,11 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
     SharedModule,
+    HttpModule,
     InMemoryWebApiModule.forRoot(ProductData),
     RouterModule.forChild([
       {
-        path: 'products',
-        component: ProductListComponent
-      },
-      {
-        path: 'product/:id',
-        resolve: { product: ProductResolver },
-        component: ProductDetailComponent
-      },
-      {
-        path: 'productEdit/:id',
+        path: ':id/edit',
         canDeactivate: [ProductEditGuard],
         resolve: { product: ProductResolver },
         component: ProductEditComponent,
@@ -55,7 +48,16 @@ import { SharedModule } from '../shared/shared.module';
           },
 
         ]
-      }
+      },
+      {
+        path: ':id',
+        resolve: { product: ProductResolver },
+        component: ProductDetailComponent
+      },
+      {
+        path: '',
+        component: ProductListComponent
+      },
     ])
   ],
   declarations: [
