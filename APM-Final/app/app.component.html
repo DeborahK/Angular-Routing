@@ -20,6 +20,9 @@
                 <li *ngIf="authService.isLoggedIn()">
                     <a (click)="logOut()">Log Out</a>
                 </li>
+                <li>
+                    <div class="navbar-text" style="color:darkorange" *ngIf="loading">Loading...</div>
+                </li>
             </ul>
         </div>
     </nav>
