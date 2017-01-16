@@ -25,11 +25,7 @@ export class ProductService {
 
     getProduct(id: number): Observable<IProduct> {
         if (id === 0) {
-        return Observable.of(this.initializeProduct());
-        // return Observable.create((observer: any) => {
-        //     observer.next(this.initializeProduct());
-        //     observer.complete();
-        // });
+            return Observable.of(this.initializeProduct());
         };
         const url = `${this.baseUrl}/${id}`;
         return this.http.get(url)
@@ -92,7 +88,8 @@ export class ProductService {
             id: 0,
             productName: null,
             productCode: null,
-            tags: [''],
+            category: null,
+            tags: [],
             releaseDate: null,
             price: null,
             description: null,

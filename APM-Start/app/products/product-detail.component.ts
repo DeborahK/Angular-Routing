@@ -4,7 +4,7 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-detail.component.html'
+    templateUrl: './app/products/product-detail.component.html'
 })
 export class ProductDetailComponent {
     pageTitle: string = 'Product Detail';
