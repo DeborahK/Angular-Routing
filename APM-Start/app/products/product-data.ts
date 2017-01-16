@@ -4,7 +4,7 @@ import { IProduct } from './product';
 
 export class ProductData implements InMemoryDbService, InMemoryBackendConfig {
     // Delay to better see the loading indicator.
-    delay = 2000;
+    // delay = 2000;
 
     createDb() {
         let products: IProduct[] = [

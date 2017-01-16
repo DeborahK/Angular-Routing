@@ -7,6 +7,17 @@
                 <li><a>Product List</a></li>
                 <li><a>Add Product</a></li>
             </ul>
+            <ul class='nav navbar-nav navbar-right'>
+                <li *ngIf="!authService.isLoggedIn()">
+                    <a (click)="logIn()">Log In</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()">
+                    <a>Welcome {{ authService.currentUser.userName }}</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()">
+                    <a (click)="logOut()">Log Out</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class='container'>
