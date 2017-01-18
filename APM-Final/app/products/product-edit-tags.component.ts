@@ -19,7 +19,6 @@ export class ProductEditTagsComponent {
     // Add the defined tags
     addTags(): void {
         let tagArray = this.newTags.split(',');
-        console.log(this.product.tags);
         this.productEditService.product.tags = this.product.tags ? this.product.tags.concat(tagArray) : tagArray;
         this.newTags = '';
     }
