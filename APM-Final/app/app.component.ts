@@ -24,7 +24,7 @@ export class AppComponent {
         this.router.navigateByUrl('/login(popup:messages)');
     }
 
-    logOut(message: string): void {
+    logOut(): void {
         this.authService.logout();
         this.router.navigate(['/welcome']);
     }

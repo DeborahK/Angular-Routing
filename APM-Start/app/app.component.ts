@@ -11,12 +11,8 @@ export class AppComponent {
 
     constructor(private authService: AuthService) { }
 
-    logIn(): void {
-        console.log('Log in');
-    }
-
-    logOut(message: string): void {
+    logOut(): void {
+        this.authService.logout();
         console.log('Log out');
     }
-
 }

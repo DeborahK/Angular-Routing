@@ -5,3 +5,8 @@ li {
 div.panel-heading {
    font-size: x-large; 
 }
+
+li { 
+    cursor: pointer; 
+}
+

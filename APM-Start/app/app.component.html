@@ -9,7 +9,7 @@
             </ul>
             <ul class='nav navbar-nav navbar-right'>
                 <li *ngIf="!authService.isLoggedIn()">
-                    <a (click)="logIn()">Log In</a>
+                    <a>Log In</a>
                 </li>
                 <li *ngIf="authService.isLoggedIn()">
                     <a>Welcome {{ authService.currentUser.userName }}</a>
