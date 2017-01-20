@@ -18,7 +18,6 @@ import { WelcomeComponent } from './home/welcome.component';
             { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
         ] , { preloadingStrategy: PreloadAllModules }) // ,  {enableTracing: true} )
     ],
-    declarations: [ WelcomeComponent ],
     exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

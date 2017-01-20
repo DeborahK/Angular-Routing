@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { PageNotFoundComponent } from './shared/page-not-found.component';
 
 /* Feature Modules */
 import { ProductModule } from './products/product.module';
@@ -20,7 +21,8 @@ import { MessageModule } from './messages/message.module';
   ],
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PageNotFoundComponent
   ],
   bootstrap: [ AppComponent ]
 })
