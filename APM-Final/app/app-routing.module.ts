@@ -4,6 +4,7 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './user/auth-guard.service';
 
 import { WelcomeComponent } from './home/welcome.component';
+import { PageNotFoundComponent } from './shared/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -15,8 +16,8 @@ import { WelcomeComponent } from './home/welcome.component';
                 canLoad: [ AuthGuard ]
             },
             { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-            { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-        ] , { preloadingStrategy: PreloadAllModules }) // ,  {enableTracing: true} )
+            { path: '**', component: PageNotFoundComponent }
+        ] , { preloadingStrategy: PreloadAllModules, enableTracing: true }) // , enableTracing: true
     ],
     exports: [ RouterModule ]
 })

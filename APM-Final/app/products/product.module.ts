@@ -50,7 +50,7 @@ import { SharedModule } from '../shared/shared.module';
       {
         path: '',
         component: ProductListComponent
-      },
+      }
     ])
   ],
   declarations: [
