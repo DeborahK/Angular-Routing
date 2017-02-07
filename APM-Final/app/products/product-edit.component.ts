@@ -2,8 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Subscription } from 'rxjs/Subscription';
-
 import { MessageService } from '../messages/message.service';
 
 import { IProduct } from './product';
@@ -20,8 +18,6 @@ import { ProductEditService } from './product-edit.service';
 export class ProductEditComponent implements OnInit {
     pageTitle: string = 'Product Edit';
     errorMessage: string;
-
-    private resolveSub: Subscription;
 
     get isDirty(): boolean {
         return this.productEditService.isDirty;
@@ -54,7 +50,7 @@ export class ProductEditComponent implements OnInit {
         // );
 
         // Watch for changes to the resolve data
-        this.resolveSub = this.route.data.subscribe(data => {
+        this.route.data.subscribe(data => {
             this.productEditService.product = data['product'];
         });
 
