@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IProduct } from './product';
 
@@ -11,15 +11,9 @@ export class ProductDetailComponent implements OnInit {
     product: IProduct;
     errorMessage: string;
 
-    constructor(private route: ActivatedRoute,
-                private router: Router) {
-    }
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.product = this.route.snapshot.data['product'];
-    }
-
-    onBack(): void {
-        this.router.navigate(['/products'], { preserveQueryParams: true });
     }
 }

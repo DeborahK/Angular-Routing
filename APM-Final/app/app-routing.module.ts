@@ -13,7 +13,7 @@ import { PageNotFoundComponent } from './shared/page-not-found.component';
             {
                 path: 'products',
                 loadChildren: 'app/products/product.module#ProductModule',
-                canLoad: [ AuthGuard ]
+                canActivateChild: [ AuthGuard ]
             },
             { path: '', redirectTo: 'welcome', pathMatch: 'full' },
             { path: '**', component: PageNotFoundComponent }
