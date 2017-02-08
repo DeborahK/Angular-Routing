@@ -38,8 +38,7 @@ import { SharedModule } from '../shared/shared.module';
             path: '',
             redirectTo: 'info',
             pathMatch: 'full'
-          },
-
+          }
         ]
       },
       {

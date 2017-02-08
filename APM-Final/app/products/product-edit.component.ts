@@ -1,4 +1,3 @@
-// Child routing component
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -6,100 +5,49 @@ import { MessageService } from '../messages/message.service';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
-import { ProductEditService } from './product-edit.service';
 
 @Component({
     templateUrl: './app/products/product-edit.component.html',
-    styleUrls: ['./app/products/product-edit.component.css'],
-    providers: [
-        ProductEditService,
-    ],
+    styleUrls: ['./app/products/product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
     pageTitle: string = 'Product Edit';
     errorMessage: string;
 
+    private currentProduct: IProduct;
+    private originalProduct: IProduct;
+    private dataIsValid: { [key: string]: boolean } = {};
+
     get isDirty(): boolean {
-        return this.productEditService.isDirty;
+        return JSON.stringify(this.originalProduct) !== JSON.stringify(this.currentProduct);
     }
 
     get product(): IProduct {
-        return this.productEditService.product;
+        return this.currentProduct;
     }
-
-    private get currentRoute(): string {
-        if (this.route.firstChild.snapshot) {
-            return this.route.firstChild.snapshot.url.join('');
-        }
-        return '';
+    set product(value: IProduct) {
+        this.currentProduct = value;
+        // Clone the object to retain a copy
+        this.originalProduct = Object.assign({}, value);
     }
 
     constructor(private route: ActivatedRoute,
         private router: Router,
         private productService: ProductService,
-        private productEditService: ProductEditService,
         private messageService: MessageService) { }
 
     ngOnInit(): void {
-        // // Read the product Id from the route parameter
-        // this.route.params.subscribe(
-        //     params => {
-        //         let id = +params['id'];
-        //         this.getProduct(id);
-        //     }
-        // );
-
         // Watch for changes to the resolve data
         this.route.data.subscribe(data => {
-            this.productEditService.product = data['product'];
+            this.product = data['product'];
+
+            // Adjust the title
+            if (this.product.id === 0) {
+                this.pageTitle = 'Add Product';
+            } else {
+                this.pageTitle = `Edit Product: ${this.product.productName}`;
+            }
         });
-
-        // Adjust the title
-        if (this.product.id === 0) {
-            this.pageTitle = 'Add Product';
-        } else {
-            this.pageTitle = `Edit Product: ${this.product.productName}`;
-        }
-    }
-
-    goBack(): void {
-        switch (this.currentRoute) {
-            case 'info':
-                this.router.navigate(['info'], { relativeTo: this.route });
-                break;
-            case 'tags':
-                this.router.navigate(['info'], { relativeTo: this.route });
-                break;
-            default:
-                this.router.navigate(['info'], { relativeTo: this.route });
-        }
-    }
-
-    goForward(): void {
-        switch (this.currentRoute) {
-            case 'info':
-                this.router.navigate(['tags'], { relativeTo: this.route });
-                break;
-            case 'tags':
-                this.router.navigate(['tags'], { relativeTo: this.route });
-                break;
-            default:
-                this.router.navigate(['tags'], { relativeTo: this.route });
-        }
-    }
-
-    disableBack(): boolean {
-        if (this.currentRoute === 'info') {
-            return true;
-        }
-        return false;
-    }
-
-    disableForward(): boolean {
-        if (this.currentRoute === 'tags') {
-            return true;
-        }
-        return false;
     }
 
     deleteProduct(): void {
@@ -115,6 +63,22 @@ export class ProductEditComponent implements OnInit {
                     );
             }
         }
+    }
+
+    isValid(path: string): boolean {
+        this.validate();
+        if (path) {
+            return this.dataIsValid[path];
+        }
+        return (this.dataIsValid &&
+            Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
+    }
+
+    // Reset the properties
+    reset(): void {
+        this.dataIsValid = {};
+        this.currentProduct = null;
+        this.originalProduct = null;
     }
 
     saveProduct(): void {
@@ -134,7 +98,30 @@ export class ProductEditComponent implements OnInit {
         if (message) {
             this.messageService.addMessage(message);
         }
-        this.productEditService.reset();
+        this.reset();
         this.router.navigate(['/products']);
     }
+
+    validate(): void {
+        // Clear the validation object
+        this.dataIsValid = {};
+
+        // 'info' tab
+        if (this.product.productName &&
+            this.product.productName.length >= 3 &&
+            this.product.productCode) {
+            this.dataIsValid['info'] = true;
+        } else {
+            this.dataIsValid['info'] = false;
+        }
+
+        // 'tags' tab
+        if (this.product.category &&
+            this.product.category.length >= 3) {
+            this.dataIsValid['tags'] = true;
+        } else {
+            this.dataIsValid['tags'] = false;
+        }
+    }
+
 }

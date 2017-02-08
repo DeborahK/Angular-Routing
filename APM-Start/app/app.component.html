@@ -1,13 +1,13 @@
 <div>
-    <nav class='navbar navbar-default'>
-        <div class='container-fluid'>
-            <a class='navbar-brand'>{{pageTitle}}</a>
-            <ul class='nav navbar-nav'>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <a class="navbar-brand">{{pageTitle}}</a>
+            <ul class="nav navbar-nav">
                 <li><a>Home</a></li>
                 <li><a>Product List</a></li>
                 <li><a>Add Product</a></li>
             </ul>
-            <ul class='nav navbar-nav navbar-right'>
+            <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!authService.isLoggedIn()">
                     <a>Log In</a>
                 </li>
@@ -20,7 +20,7 @@
             </ul>
         </div>
     </nav>
-    <div class='container'>
+    <div class="container">
         <app-home></app-home>
     </div>
 </div>

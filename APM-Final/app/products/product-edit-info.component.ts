@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { IProduct } from './product';
-import { ProductEditService } from './product-edit.service';
 
 @Component({
     templateUrl: './app/products/product-edit-info.component.html'
 })
-export class ProductEditInfoComponent {
+export class ProductEditInfoComponent implements OnInit {
+    @ViewChild('productForm') productForm: NgForm;
     errorMessage: string;
+    product: IProduct;
 
-    get product(): IProduct {
-        return this.productEditService.product;
-    }
-
-    constructor(private productEditService: ProductEditService) { }
+    constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        // Watch for changes to the form
+        this.route.parent.data.subscribe(data => {
+            this.product = data['product'];
+
+            // Reset to clear the form of validation errors
+            this.productForm.reset();
+        });
     }
 }

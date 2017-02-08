@@ -7,11 +7,11 @@
         <div class="wizard">
             <a [routerLink]="['info']" routerLinkActive="active">
                 Basic Information  <span [ngClass]="{'glyphicon glyphicon-exclamation-sign':
-                                                      !productEditService.isValid('info')}"></span>
+                                                      !isValid('info')}"></span>
             </a>
             <a [routerLink]="['tags']" routerLinkActive="active">
                 Search Tags  <span  [ngClass]="{'glyphicon glyphicon-exclamation-sign':
-                                                      !productEditService.isValid('tags')}"></span>
+                                                      !isValid('tags')}"></span>
             </a>
         </div>
 
@@ -20,19 +20,12 @@
                 
     <div class="panel-footer">
         <div class="row">
-            <button class="col-md-1 btn btn-default"
-                    style="margin-left:15px;"
-                    (click)="goBack()"
-                    [disabled]="disableBack()">
-                <span class="glyphicon glyphicon-chevron-left" style="font-size:12px"></span>
-                Back
-            </button>
             <div class="col-md-6 col-md-offset-2">
                 <span>
                     <button class="btn btn-primary"
                             type="button"
                             style="width:80px;margin-right:10px"
-                            [disabled]=!productEditService.isValid()
+                            [disabled]=!isValid()
                             (click)="saveProduct()">
                         Save
                     </button>
@@ -52,13 +45,6 @@
                     </a>
                 </span>       
             </div>
-            <button class="col-md-1 btn btn-default pull-right"
-                    style="margin-right:15px;"
-                    (click)="goForward()"
-                    [disabled]="disableForward()">
-                Next
-                <span class="glyphicon glyphicon-chevron-right" style="font-size:12px"></span>
-            </button>
         </div>
     </div>
 
