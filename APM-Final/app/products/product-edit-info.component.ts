@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { IProduct } from './product';
 
@@ -8,7 +8,7 @@ import { IProduct } from './product';
     templateUrl: './app/products/product-edit-info.component.html'
 })
 export class ProductEditInfoComponent implements OnInit {
-    @ViewChild('productForm') productForm: NgForm;
+    @ViewChild(NgForm) productForm: NgForm;
     errorMessage: string;
     product: IProduct;
 
@@ -18,8 +18,9 @@ export class ProductEditInfoComponent implements OnInit {
         this.route.parent.data.subscribe(data => {
             this.product = data['product'];
 
-            // Reset to clear the form of validation errors
-            this.productForm.reset();
+            if (this.productForm) {
+                this.productForm.reset();
+            }
         });
     }
 }

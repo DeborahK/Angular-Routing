@@ -39,15 +39,19 @@ export class ProductEditComponent implements OnInit {
     ngOnInit(): void {
         // Watch for changes to the resolve data
         this.route.data.subscribe(data => {
-            this.product = data['product'];
-
-            // Adjust the title
-            if (this.product.id === 0) {
-                this.pageTitle = 'Add Product';
-            } else {
-                this.pageTitle = `Edit Product: ${this.product.productName}`;
-            }
+             this.onProductRetrieved(data['product']);
         });
+    }
+
+    onProductRetrieved(product: IProduct): void {
+        this.product = product;
+
+        // Adjust the title
+        if (this.product.id === 0) {
+            this.pageTitle = 'Add Product';
+        } else {
+            this.pageTitle = `Edit Product: ${this.product.productName}`;
+        }
     }
 
     deleteProduct(): void {
@@ -58,8 +62,8 @@ export class ProductEditComponent implements OnInit {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(
-                    () => this.onSaveComplete(`${this.product.productName} was deleted`),
-                    (error: any) => this.errorMessage = <any>error
+                        () => this.onSaveComplete(`${this.product.productName} was deleted`),
+                        (error: any) => this.errorMessage = <any>error
                     );
             }
         }
@@ -74,16 +78,8 @@ export class ProductEditComponent implements OnInit {
             Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true));
     }
 
-    // Reset the properties
-    reset(): void {
-        this.dataIsValid = {};
-        this.currentProduct = null;
-        this.originalProduct = null;
-    }
-
     saveProduct(): void {
-        // Should check for validation errors here
-        if (true === true) {
+        if (this.isValid(null)) {
             this.productService.saveProduct(this.product)
                 .subscribe(
                 () => this.onSaveComplete(`${this.product.productName} was saved`),
@@ -98,7 +94,6 @@ export class ProductEditComponent implements OnInit {
         if (message) {
             this.messageService.addMessage(message);
         }
-        this.reset();
         this.router.navigate(['/products']);
     }
 
@@ -123,5 +118,4 @@ export class ProductEditComponent implements OnInit {
             this.dataIsValid['tags'] = false;
         }
     }
-
 }

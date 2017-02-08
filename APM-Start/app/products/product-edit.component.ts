@@ -58,20 +58,19 @@ export class ProductEditComponent {
     }
 
     saveProduct(): void {
-        if (this.productForm.dirty && this.productForm.valid) {
+        if (this.productForm.valid) {
             this.productService.saveProduct(this.product)
                 .subscribe(
                     () => this.onSaveComplete(),
                     (error: any) => this.errorMessage = <any>error
                 );
-        } else if (!this.productForm.dirty) {
-            this.onSaveComplete();
+        } else {
+            this.errorMessage = 'Please correct the validation errors.';
         }
     }
 
     onSaveComplete(): void {
-        // Reset the form to clear the flags
-        // And navigate back to the product list
+        // Navigate back to the product list
         this.productForm.reset();
     }
 }
