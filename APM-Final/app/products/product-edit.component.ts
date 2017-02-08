@@ -82,8 +82,8 @@ export class ProductEditComponent implements OnInit {
         if (this.isValid(null)) {
             this.productService.saveProduct(this.product)
                 .subscribe(
-                () => this.onSaveComplete(`${this.product.productName} was saved`),
-                (error: any) => this.errorMessage = <any>error
+                    () => this.onSaveComplete(`${this.product.productName} was saved`),
+                    (error: any) => this.errorMessage = <any>error
                 );
         } else {
             this.errorMessage = 'Please correct the validation errors.';
@@ -94,7 +94,16 @@ export class ProductEditComponent implements OnInit {
         if (message) {
             this.messageService.addMessage(message);
         }
+        this.reset();
         this.router.navigate(['/products']);
+    }
+
+    // Reset the data
+    // Required after a save so the data is no longer seen as dirty.
+    reset(): void {
+        this.dataIsValid = null;
+        this.currentProduct = null;
+        this.originalProduct = null;
     }
 
     validate(): void {
