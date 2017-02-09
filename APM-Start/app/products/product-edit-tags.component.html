@@ -5,7 +5,7 @@
             <legend>Product Search Tags</legend>
             <div class="form-group" 
                     [ngClass]="{'has-error': (categoryVar.touched || 
-                                              categoryVar.dirty) && 
+                                              categoryVar.dirty || product.id !== 0) && 
                                               !categoryVar.valid }">
                 <label class="col-md-2 control-label" for="categoryId">Category</label>
                 <div class="col-md-8">
@@ -19,7 +19,7 @@
                            name="category"
                            #categoryVar="ngModel" />
                     <span class="help-block" *ngIf="(categoryVar.touched ||
-                                                     categoryVar.dirty) &&
+                                                     categoryVar.dirty || product.id !== 0) &&
                                                      categoryVar.errors">
                         <span *ngIf="categoryVar.errors.required">
                             A category must be entered.
@@ -33,7 +33,7 @@
 
             <div class="form-group" 
                     [ngClass]="{'has-error': (tagVar.touched || 
-                                              tagVar.dirty) && 
+                                              tagVar.dirty || product.id !== 0) && 
                                               !tagVar.valid }">
                 <label class="col-md-2 control-label" for="tagsId">Search Tags</label>
                 <div class="col-md-8">
@@ -46,7 +46,7 @@
                            name="tags"
                            #tagVar="ngModel" />
                     <span class="help-block" *ngIf="(tagVar.touched ||
-                                                     tagVar.dirty) &&
+                                                     tagVar.dirty || product.id !== 0) &&
                                                      tagVar.errors">
                         <span *ngIf="tagVar.errors.minlength">
                             The search tag must be at least 3 characters in length.

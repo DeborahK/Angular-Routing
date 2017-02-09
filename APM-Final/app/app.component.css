@@ -10,8 +10,8 @@ li {
     cursor: pointer; 
 }
 
-/* Animating the routes */
-pm-app div {
+/* Fade transition */
+/*pm-app div {
     animation-duration: .5s;
     opacity: 0;
     animation-name: fadeIn;
@@ -22,12 +22,28 @@ pm-app div {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    /*transform: translate(-200px);*/
   }
 
   to {
     opacity: 1;
-    /*transform: translate(0px);*/
+  }
+}*/
+
+/* Slide transition */
+pm-app div.panel.panel-primary {
+    animation-duration: .5s;
+    animation-name: slideIn;
+    animation-fill-mode: forwards;
+    transition: transform .5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(-200px);
+  }
+
+  to {
+    transform: translate(0px);
   }
 }
 
@@ -64,4 +80,3 @@ pm-app div {
         transform: rotate(359deg);
     }
 }
-
