@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
-import { ProductDetailGuard, ProductEditGuard } from './product-guard.service';
+import { ProductEditGuard } from './product-guard.service';
 import { ProductResolver } from './product-resolver.service';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductService } from './product.service';
@@ -62,7 +62,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     ProductService,
-    ProductDetailGuard,
     ProductEditGuard,
     ProductResolver
   ]

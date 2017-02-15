@@ -14,7 +14,7 @@ import { MessageService } from './message.service';
                 path: 'messages',
                 component: MessageComponent,
                 outlet: 'popup'
-            },
+            }
         ])
     ],
     declarations: [

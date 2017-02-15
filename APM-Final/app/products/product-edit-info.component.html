@@ -6,8 +6,8 @@
             <legend>Basic Product Information</legend>
             <div class="form-group" 
                     [ngClass]="{'has-error': (productNameVar.touched || 
-                                            productNameVar.dirty || product.id !== 0) && 
-                                            !productNameVar.valid }">
+                                              productNameVar.dirty || product.id !== 0) && 
+                                              !productNameVar.valid }">
                 <label class="col-md-2 control-label" 
                         for="productNameId">Product Name</label>
 
@@ -22,8 +22,8 @@
                             name="productName"
                             #productNameVar="ngModel" />
                     <span class="help-block" *ngIf="(productNameVar.touched ||
-                                                        productNameVar.dirty || product.id !== 0) &&
-                                                        productNameVar.errors">
+                                                     productNameVar.dirty || product.id !== 0) &&
+                                                     productNameVar.errors">
                         <span *ngIf="productNameVar.errors.required">
                             Product name is required.
                         </span>

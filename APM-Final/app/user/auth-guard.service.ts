@@ -8,14 +8,15 @@ import { AuthService } from './auth.service';
 export  class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private authService: AuthService,
-                private router: Router) {
-    }
+                private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        console.log('In canActivate: ' + state.url);
         return this.checkLoggedIn(state.url);
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        console.log('In canActivateChild: ' + state.url);
         return this.checkLoggedIn(state.url);
     }
 
