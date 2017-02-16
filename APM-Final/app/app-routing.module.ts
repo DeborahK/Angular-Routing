@@ -17,7 +17,7 @@ import { PageNotFoundComponent } from './shared/page-not-found.component';
             },
             { path: '', redirectTo: 'welcome', pathMatch: 'full' },
             { path: '**', component: PageNotFoundComponent }
-        ] , { preloadingStrategy: PreloadAllModules }) // , enableTracing: true
+        ], { preloadingStrategy: PreloadAllModules }) // , enableTracing: true
     ],
     exports: [ RouterModule ]
 })
