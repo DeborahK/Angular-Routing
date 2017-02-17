@@ -34,7 +34,10 @@ export class AppComponent {
     }
 
     displayMessages(): void {
-        this.router.navigate([{outlets: { popup: ['messages']}}]);
+        // Example of primary and secondary routing together
+        // this.router.navigate(['/login', {outlets: { popup: ['messages']}}]); // Does not work
+        // this.router.navigate([{outlets: { primary: ['login'], popup: ['messages']}}]); // Works
+        this.router.navigate([{outlets: { popup: ['messages']}}]); // Works
         this.messageService.isDisplayed = true;
     }
 
