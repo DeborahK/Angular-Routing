@@ -9,7 +9,7 @@ import { ProductData } from './products/product-data';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WelcomeComponent } from './home/welcome.component';
-import { PageNotFoundComponent } from './shared/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 /* Feature Modules */
 import { UserModule } from './user/user.module';

@@ -5,7 +5,7 @@ import { AuthGuard } from './user/auth-guard.service';
 import { SelectiveStrategy } from './selective-strategy.service';
 
 import { WelcomeComponent } from './home/welcome.component';
-import { PageNotFoundComponent } from './shared/page-not-found.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
     imports: [
