@@ -2,13 +2,14 @@
     "name": "product-management",
     "version": "1.0.0",
     "author": "Deborah Kurata",
-    "description": "Package for the Acme Product Management sample application",
+    "description": "Package for the Acme Product Management sample application used in the Angular Routing Pluralsight course",
     "scripts": {
-        "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-        "tsc": "tsc",
-        "tsc:w": "tsc -w",
-        "lint": "tslint ./app/**/*.ts -t verbose",
-        "lite": "lite-server"
+        "build": "tsc -p src/",
+        "build:watch": "tsc -p src/ -w",
+        "serve": "lite-server -c=bs-config.json",
+        "prestart": "npm run build",
+        "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+        "lint": "tslint ./src/**/*.ts -t verbose"
     },
     "license": "ISC",
     "dependencies": {
@@ -30,11 +31,11 @@
         "bootstrap": "^3.3.7"
     },
     "devDependencies": {
-        "concurrently": "^3.1.0",
+        "concurrently": "^3.2.0",
         "lite-server": "^2.2.2",
-        "tslint": "^3.15.1",
         "typescript": "~2.0.10",
-
+        "tslint": "^3.15.1",
+        
         "@types/node": "^6.0.46"
     },
     "repository": {}

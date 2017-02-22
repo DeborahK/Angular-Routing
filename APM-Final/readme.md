@@ -5,11 +5,12 @@ The routing in this reference application demonstrates:
  - Routing Basics
  - Routing to Features
  - Route Parameters
- - Tracing, styling, and animating routes
+ - Prefetching Data using Route Resolvers
  - Child routes
- - Secondary routes
+ - Styling, Animating, and Watching Routes
+ - Secondary (Auxiliary) routes
  - Route guards (including confirmation when navigating away with unsaved changes)
- - Lazy loaing and asynchronous routing
+ - Lazy loading (asynchronous routing)
 
 ## Installation
 
