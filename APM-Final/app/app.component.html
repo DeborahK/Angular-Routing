@@ -4,9 +4,9 @@
         <div class="container-fluid">
             <a class="navbar-brand">{{pageTitle}}</a>
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a [routerLink]="['/welcome']">Home</a></li>
-            </ul>
-            <ul class="nav navbar-nav" *ngIf="authService.isLoggedIn()">
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/welcome']">Home</a>
+                </li>
                 <li routerLinkActive="active" [routerLinkActiveOptions]= "{ exact: true }">
                     <a [routerLink]="['/products']" >Product List</a>
                 </li>
