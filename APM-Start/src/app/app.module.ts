@@ -22,7 +22,7 @@ import { MessageModule } from './messages/message.module';
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     ProductModule,
     UserModule,
-    MessageModule,
+    MessageModule
   ],
   declarations: [
     AppComponent,

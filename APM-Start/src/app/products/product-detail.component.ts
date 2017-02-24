@@ -19,8 +19,4 @@ export class ProductDetailComponent {
             product => this.product = product,
             error => this.errorMessage = <any>error);
     }
-
-    onBack(): void {
-        // navigate back to the list page
-    }
 }

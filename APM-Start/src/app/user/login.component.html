@@ -67,13 +67,12 @@
                             <button class="btn btn-primary"
                                     type="submit"
                                     style="width:80px;margin-right:10px"
-                                    [disabled]='!loginForm.valid'>
+                                    [disabled]="!loginForm.valid">
                                 Log In
                             </button>
                         </span>
                         <span>
-                            <a class="btn btn-default"
-                               style="width:80px">
+                            <a class="btn btn-default">
                                 Cancel
                             </a>
                         </span>
@@ -81,7 +80,7 @@
                 </div>
             </fieldset>
         </form>
-        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
 
 </div>

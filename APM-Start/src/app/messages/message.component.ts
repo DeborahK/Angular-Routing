@@ -30,6 +30,6 @@ export class MessageComponent {
                 private router: Router) { }
 
     close(): void {
-        this.router.navigate([{ outlets: { popup: null } }]);
+        // Close the popup.
     }
 }

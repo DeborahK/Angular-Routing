@@ -21,7 +21,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
             { path: '**', component: PageNotFoundComponent }
         ], { preloadingStrategy: SelectiveStrategy }) // , { enableTracing: true })
     ],
-    exports: [RouterModule],
+    exports: [ RouterModule ],
     providers: [ SelectiveStrategy ]
 })
 export class AppRoutingModule { }
