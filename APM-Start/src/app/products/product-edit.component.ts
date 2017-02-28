@@ -1,19 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/merge';
+import { Component } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: './app/products/product-edit.component.html'
+    templateUrl: './app/products/product-edit.component.html',
+    styleUrls: ['./app/products/product-edit.component.css']
 })
 export class ProductEditComponent {
-    @ViewChild(NgForm) productForm: NgForm;
-
     pageTitle: string = 'Product Edit';
     errorMessage: string;
 
@@ -30,9 +24,6 @@ export class ProductEditComponent {
     }
 
     onProductRetrieved(product: IProduct): void {
-        if (this.productForm) {
-            this.productForm.reset();
-        }
         this.product = product;
 
         if (this.product.id === 0) {
@@ -58,7 +49,7 @@ export class ProductEditComponent {
     }
 
     saveProduct(): void {
-        if (this.productForm.valid) {
+        if (true === true) {
             this.productService.saveProduct(this.product)
                 .subscribe(
                     () => this.onSaveComplete(),
@@ -71,6 +62,5 @@ export class ProductEditComponent {
 
     onSaveComplete(): void {
         // Navigate back to the product list
-        this.productForm.reset();
     }
 }

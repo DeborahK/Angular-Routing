@@ -13,7 +13,7 @@ import { ProductService } from './product.service';
 export class ProductResolver implements Resolve<IProduct> {
 
     constructor(private productService: ProductService,
-        private router: Router) { }
+                private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<IProduct> {

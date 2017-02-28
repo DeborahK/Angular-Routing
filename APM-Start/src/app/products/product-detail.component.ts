@@ -11,8 +11,7 @@ export class ProductDetailComponent {
     product: IProduct;
     errorMessage: string;
 
-    constructor(private productService: ProductService) {
-    }
+    constructor(private productService: ProductService) { }
 
     getProduct(id: number) {
         this.productService.getProduct(id).subscribe(

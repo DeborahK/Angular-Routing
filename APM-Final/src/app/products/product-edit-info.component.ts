@@ -9,6 +9,7 @@ import { IProduct } from './product';
 })
 export class ProductEditInfoComponent implements OnInit {
     @ViewChild(NgForm) productForm: NgForm;
+
     errorMessage: string;
     product: IProduct;
 
