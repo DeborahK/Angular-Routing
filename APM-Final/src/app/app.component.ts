@@ -46,10 +46,6 @@ export class AppComponent {
         this.messageService.isDisplayed = false;
     }
 
-    logIn(): void {
-        this.router.navigate(['/login']);
-    }
-
     logOut(): void {
         this.authService.logout();
         this.router.navigate(['/welcome']);

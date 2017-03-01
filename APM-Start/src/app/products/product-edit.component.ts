@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { MessageService } from '../messages/message.service';
+
 import { IProduct } from './product';
 import { ProductService } from './product.service';
 
@@ -13,7 +15,8 @@ export class ProductEditComponent {
 
     product: IProduct;
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService,
+                private messageService: MessageService) { }
 
     getProduct(id: number): void {
         this.productService.getProduct(id)
@@ -41,7 +44,7 @@ export class ProductEditComponent {
             if (confirm(`Really delete the product: ${this.product.productName}?`)) {
                 this.productService.deleteProduct(this.product.id)
                     .subscribe(
-                        () => this.onSaveComplete(),
+                        () => this.onSaveComplete(`${this.product.productName} was deleted`),
                         (error: any) => this.errorMessage = <any>error
                     );
             }
@@ -52,7 +55,7 @@ export class ProductEditComponent {
         if (true === true) {
             this.productService.saveProduct(this.product)
                 .subscribe(
-                    () => this.onSaveComplete(),
+                    () => this.onSaveComplete(`${this.product.productName} was saved`),
                     (error: any) => this.errorMessage = <any>error
                 );
         } else {
@@ -60,7 +63,11 @@ export class ProductEditComponent {
         }
     }
 
-    onSaveComplete(): void {
+    onSaveComplete(message?: string): void {
+        if (message) {
+            this.messageService.addMessage(message);
+        }
+
         // Navigate back to the product list
     }
 }
