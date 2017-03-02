@@ -12,7 +12,7 @@ export class LoginComponent {
     pageTitle = 'Log In';
 
     constructor(private authService: AuthService,
-        private router: Router) { }
+                private router: Router) { }
 
     login(loginForm: NgForm) {
         if (loginForm && loginForm.valid) {
