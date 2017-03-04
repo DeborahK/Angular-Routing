@@ -3,9 +3,15 @@
         <div class="container-fluid">
             <a class="navbar-brand">{{pageTitle}}</a>
             <ul class="nav navbar-nav">
-                <li><a>Home</a></li>
-                <li><a>Product List</a></li>
-                <li><a>Add Product</a></li>
+                <li>
+                    <a>Home</a>
+                </li>
+                <li>
+                    <a>Product List</a>
+                </li>
+                <li>
+                    <a>Add Product</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="authService.isLoggedIn()">
