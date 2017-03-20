@@ -13,15 +13,15 @@ import { PageNotFoundComponent } from './page-not-found.component';
             { path: 'welcome', component: WelcomeComponent },
             {
                 path: 'products',
-                loadChildren: 'app/products/product.module#ProductModule',
                 canActivate: [ AuthGuard ],
-                data: { preload: true }
+                data: { preload: true },
+                loadChildren: 'app/products/product.module#ProductModule'
             },
             { path: '', redirectTo: 'welcome', pathMatch: 'full' },
             { path: '**', component: PageNotFoundComponent }
         ], { preloadingStrategy: SelectiveStrategy }) // , { enableTracing: true })
     ],
-    exports: [ RouterModule ],
-    providers: [ SelectiveStrategy ]
+    providers: [ SelectiveStrategy ],
+    exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
