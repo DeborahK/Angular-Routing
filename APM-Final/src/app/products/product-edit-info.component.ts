@@ -5,23 +5,23 @@ import { NgForm } from '@angular/forms';
 import { IProduct } from './product';
 
 @Component({
-    templateUrl: './app/products/product-edit-info.component.html'
+  templateUrl: './app/products/product-edit-info.component.html'
 })
 export class ProductEditInfoComponent implements OnInit {
-    @ViewChild(NgForm) productForm: NgForm;
+  @ViewChild(NgForm) productForm: NgForm;
 
-    errorMessage: string;
-    product: IProduct;
+  errorMessage: string;
+  product: IProduct;
 
-    constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
-    ngOnInit(): void {
-        this.route.parent.data.subscribe(data => {
-            this.product = data['product'];
+  ngOnInit(): void {
+    this.route.parent.data.subscribe(data => {
+      if (this.productForm) {
+        this.productForm.reset();
+      }
 
-            if (this.productForm) {
-                this.productForm.reset();
-            }
-        });
-    }
+      this.product = data['product'];
+    });
+  }
 }
