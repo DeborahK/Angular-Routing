@@ -1,41 +1,51 @@
 {
-    "name": "product-management",
-    "version": "1.0.0",
-    "author": "Deborah Kurata",
-    "description": "Package for the Acme Product Management sample application used in the Angular Routing Pluralsight course",
-    "scripts": {
-        "build": "tsc -p src/",
-        "build:watch": "tsc -p src/ -w",
-        "serve": "lite-server -c=bs-config.json",
-        "prestart": "npm run build",
-        "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
-        "lint": "tslint ./src/**/*.ts -t verbose"
-    },
-    "license": "ISC",
-    "dependencies": {
-        "@angular/common": "~4.0.0",
-        "@angular/compiler": "~4.0.0",
-        "@angular/core": "~4.0.0",
-        "@angular/forms": "~4.0.0",
-        "@angular/http": "~4.0.0",
-        "@angular/platform-browser": "~4.0.0",
-        "@angular/platform-browser-dynamic": "~4.0.0",
-        "@angular/router": "~4.0.0",
-
-        "angular-in-memory-web-api": "~0.3.0",
-        "systemjs": "0.19.40",
-        "core-js": "^2.4.1",
-        "rxjs": "5.0.1",
-        "zone.js": "^0.8.4",
-        "bootstrap": "^3.3.7"
-    },
-    "devDependencies": {
-        "concurrently": "^3.2.0",
-        "lite-server": "^2.2.2",
-        "typescript": "~2.1.0",
-        "tslint": "^3.15.1",
-        
-        "@types/node": "^6.0.46"
-    },
-    "repository": {}
+  "name": "apm",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve -o",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~7.0.0",
+    "@angular/common": "~7.0.0",
+    "@angular/compiler": "~7.0.0",
+    "@angular/core": "~7.0.0",
+    "@angular/forms": "~7.0.0",
+    "@angular/http": "~7.0.0",
+    "@angular/platform-browser": "~7.0.0",
+    "@angular/platform-browser-dynamic": "~7.0.0",
+    "@angular/router": "~7.0.0",
+    "bootstrap": "^4.1.3",
+    "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
+    "rxjs": "~6.3.3",
+    "zone.js": "~0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.10.0",
+    "@angular/cli": "~7.0.3",
+    "@angular/compiler-cli": "~7.0.0",
+    "@angular/language-service": "~7.0.0",
+    "@types/node": "~8.9.4",
+    "@types/jasmine": "~2.8.8",
+    "@types/jasminewd2": "~2.0.3",
+    "angular-in-memory-web-api": "^0.7.0",
+    "codelyzer": "~4.5.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~3.0.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.1.1"
+  }
 }

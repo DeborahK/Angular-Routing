@@ -1,42 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
-import { IProduct } from './product';
+import { ProductResolved } from './product';
 import { ProductService } from './product.service';
 
-@Injectable()
-export class ProductResolver implements Resolve<IProduct> {
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductResolver implements Resolve<ProductResolved> {
 
-    constructor(private productService: ProductService,
-                private router: Router) { }
+  constructor(private productService: ProductService) { }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<IProduct> {
-        let id = route.params['id'];
-        // let id = route.paramMap.get('id');
-        if (isNaN(+id)) {
-            console.log(`Product id was not a number: ${id}`);
-            this.router.navigate(['/products']);
-            return Observable.of(null);
-        }
-        return this.productService.getProduct(+id)
-            .map(product => {
-                if (product) {
-                    return product;
-                }
-                console.log(`Product was not found: ${id}`);
-                this.router.navigate(['/products']);
-                return null;
-            })
-            .catch(error => {
-                console.log(`Retrieval error: ${error}`);
-                this.router.navigate(['/products']);
-                return Observable.of(null);
-            });
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Observable<ProductResolved> {
+    const id = route.paramMap.get('id');
+    if (isNaN(+id)) {
+      const message = `Product id was not a number: ${id}`;
+      console.error(message);
+      return of({ product: null, error: message });
     }
+
+    return this.productService.getProduct(+id)
+      .pipe(
+        map(product => ({ product: product })),
+        catchError(error => {
+          const message = `Retrieval error: ${error}`;
+          console.error(message);
+          return of({ product: null, error: message });
+        })
+      );
+  }
+
 }

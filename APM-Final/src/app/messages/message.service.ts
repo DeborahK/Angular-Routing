@@ -1,12 +1,29 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MessageService {
-    private messages: string[] = [];
-    isDisplayed = false;
+  private _messages: string[] = [];
+  isDisplayed = false;
 
-    addMessage(message: string): void {
-        let currentDate = new Date();
-        this.messages.unshift(message + ' at ' + currentDate.toLocaleString());
-    }
+  get messages(): string[] {
+    return this._messages;
+  }
+
+  constructor() {
+    // Prevent update of messages (immutable)
+    Object.freeze(this.messages);
+  }
+
+  addMessage(message: string): void {
+    const currentDate = new Date();
+
+    // Create a new array and add the item to it
+    const newMessages = [...this.messages];
+    newMessages.unshift(message + ' at ' + currentDate.toLocaleString());
+
+    // Set the original array to this new array
+    this._messages = newMessages;
+  }
 }

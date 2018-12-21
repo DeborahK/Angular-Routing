@@ -1,21 +1,32 @@
 import { Component } from '@angular/core';
 
-import { IProduct } from './product';
+import { Product } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: './app/products/product-detail.component.html'
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent {
-    pageTitle: string = 'Product Detail';
-    product: IProduct;
-    errorMessage: string;
+  pageTitle = 'Product Detail';
+  product: Product;
+  errorMessage: string;
 
-    constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
-    getProduct(id: number) {
-        this.productService.getProduct(id).subscribe(
-            product => this.product = product,
-            error => this.errorMessage = <any>error);
+  getProduct(id: number) {
+    this.productService.getProduct(id).subscribe(
+      product => this.onProductRetrieved(product),
+      error => this.errorMessage = <any>error);
+  }
+
+  onProductRetrieved(product: Product): void {
+    this.product = product;
+
+    if (this.product) {
+      this.pageTitle = `Product Detail: ${this.product.productName}`;
+    } else {
+      this.pageTitle = 'No product found';
     }
+  }
 }

@@ -1,46 +1,66 @@
-<span class="glyphicon glyphicon-refresh glyphicon-spin spinner" *ngIf="loading"></span>
-<div>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <a class="navbar-brand">{{pageTitle}}</a>
-            <ul class="nav navbar-nav">
-                <li routerLinkActive="active">
-                    <a [routerLink]="['/welcome']">Home</a>
-                </li>
-                <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                    <a [routerLink]="['/products']">Product List</a>
-                </li>
-                <li routerLinkActive="active">
-                    <a [routerLink]="['/products', 0, 'edit']">Add Product</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="authService.isLoggedIn()">
-                    <a [routerLink]="['/login']">Welcome {{ authService.currentUser.userName }}</a>
-                </li>
-                <li *ngIf="!messageService.isDisplayed">
-                    <a (click)="displayMessages()">Show Messages</a>
-                </li>
-                <li *ngIf="messageService.isDisplayed">
-                    <a (click)="hideMessages()">Hide Messages</a>
-                </li>
-                <li *ngIf="!authService.isLoggedIn()">
-                    <a [routerLink]="['/login']">Log In</a>
-                </li>
-                <li *ngIf="authService.isLoggedIn()">
-                    <a (click)="logOut()">Log Out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <router-outlet></router-outlet>
-            </div>
-            <div class="col-md-2">
-                <router-outlet name="popup"></router-outlet>
-            </div>
-        </div>
+<span class="fa fa-spinner spinner"
+      *ngIf="loading"></span>
+
+<!-- Main part of the menu-->
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand">{{pageTitle}}</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link"
+         [routerLink]="['/welcome']"
+         routerLinkActive="active">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         [routerLink]="['/products']"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact : true}">Product List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         [routerLink]="['/products', 0, 'edit']"
+         routerLinkActive="active">Add Product</a>
+    </li>
+  </ul>
+
+  <!-- Left justified part of the menu -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         [routerLink]="['/login']">Welcome {{ userName }}</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="!isMessageDisplayed">
+      <a class="nav-link"
+         (click)="displayMessages()">Show Messages</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="isMessageDisplayed">
+      <a class="nav-link"
+         (click)="hideMessages()">Hide Messages</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="!isLoggedIn">
+      <a class="nav-link"
+         [routerLink]="['/login']">Log In</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         (click)="logOut()">Log Out</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"
+         [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+      <router-outlet #o="outlet"></router-outlet>
     </div>
+    <div class="col-md-2">
+      <router-outlet name="popup"></router-outlet>
+    </div>
+  </div>
 </div>

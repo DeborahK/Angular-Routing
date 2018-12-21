@@ -1,0 +1,75 @@
+<div class="card-body">
+  <form novalidate>
+    <fieldset>
+      <legend>Product Search Tags</legend>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="categoryId">Category</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="categoryId"
+                 type="text"
+                 placeholder="Category (required)"
+                 required
+                 minlength="3"
+                 [(ngModel)]="product.category"
+                 name="category"
+                 #categoryVar="ngModel"
+                 [ngClass]="{'is-invalid': (categoryVar.touched ||
+                                            categoryVar.dirty || 
+                                            product.id !== 0) &&
+                                            !categoryVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="categoryVar.errors?.required">
+              A category must be entered.
+            </span>
+            <span *ngIf="categoryVar.errors?.minlength">
+              The category must be at least 3 characters in length.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label"
+               for="tagsId">Search Tags</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="tagsId"
+                 type="text"
+                 placeholder="Search keywords separated by commas"
+                 [(ngModel)]="newTags"
+                 name="tags" />
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-outline-primary"
+                  type="button"
+                  title="Enter the search keywords separated by commas and then press Add"
+                  (click)="addTags()">
+            Add
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <span *ngFor="let tag of product.tags; let i = index">
+            <button class="btn btn-outline-secondary"
+                    style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                    title="Click to remove this tag"
+                    (click)="removeTag(i)">
+              {{tag}}
+              <span class="fa fa-times-circle"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+</div>
+
+<div class="alert alert-danger"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>

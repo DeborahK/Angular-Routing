@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './app/home/welcome.component.html'
+  selector: 'pm-home',
+  templateUrl: './welcome.component.html'
 })
 export class WelcomeComponent {
-    public pageTitle: string = 'Welcome';
+  public pageTitle = 'Welcome';
 }
