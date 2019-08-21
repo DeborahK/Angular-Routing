@@ -65,11 +65,10 @@ export class ProductEditComponent implements OnInit {
       this.onSaveComplete(`${this.product.productName} was deleted`);
     } else {
       if (confirm(`Really delete the product: ${this.product.productName}?`)) {
-        this.productService.deleteProduct(this.product.id)
-          .subscribe(
-            () => this.onSaveComplete(`${this.product.productName} was deleted`),
-            (error: any) => this.errorMessage = <any>error
-          );
+        this.productService.deleteProduct(this.product.id).subscribe({
+          next: () => this.onSaveComplete(`${this.product.productName} was deleted`),
+          error: err => this.errorMessage = err
+        });
       }
     }
   }
@@ -92,17 +91,15 @@ export class ProductEditComponent implements OnInit {
   saveProduct(): void {
     if (this.isValid()) {
       if (this.product.id === 0) {
-        this.productService.createProduct(this.product)
-          .subscribe(
-            () => this.onSaveComplete(`The new ${this.product.productName} was saved`),
-            (error: any) => this.errorMessage = <any>error
-          );
+        this.productService.createProduct(this.product).subscribe({
+          next: () => this.onSaveComplete(`The new ${this.product.productName} was saved`),
+          error: err => this.errorMessage = err
+        });
       } else {
-        this.productService.updateProduct(this.product)
-          .subscribe(
-            () => this.onSaveComplete(`The updated ${this.product.productName} was saved`),
-            (error: any) => this.errorMessage = <any>error
-          );
+        this.productService.updateProduct(this.product).subscribe({
+          next: () => this.onSaveComplete(`The updated ${this.product.productName} was saved`),
+          error: err => this.errorMessage = err
+        });
       }
     } else {
       this.errorMessage = 'Please correct the validation errors.';

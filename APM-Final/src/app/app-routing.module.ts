@@ -12,9 +12,10 @@ import { SelectiveStrategy } from './selective-strategy.service';
       { path: 'welcome', component: WelcomeComponent },
       {
         path: 'products',
-        canActivate: [ AuthGuard ],
-        data: { preload: true },
-        loadChildren: './products/product.module#ProductModule'
+        canActivate: [AuthGuard],
+        data: { preload: false },
+        loadChildren: () =>
+          import('./products/product.module').then(m => m.ProductModule)
       },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }

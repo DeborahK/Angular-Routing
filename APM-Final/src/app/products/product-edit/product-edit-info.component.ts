@@ -8,7 +8,7 @@ import { Product } from '../product';
   templateUrl: './product-edit-info.component.html'
 })
 export class ProductEditInfoComponent implements OnInit {
-  @ViewChild(NgForm) productForm: NgForm;
+  @ViewChild(NgForm, { static: false }) productForm: NgForm;
 
   errorMessage: string;
   product: Product;
