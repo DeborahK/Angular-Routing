@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route } from '@angular/router';
+import { CanActivate, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
 
@@ -17,8 +17,10 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.checkLoggedIn(state.url);
   }
 
-  canLoad(route: Route): boolean {
-    return this.checkLoggedIn(route.path);
+  // Use the segments to build the full route
+  // when using canLoad
+  canLoad(route: Route, segments: UrlSegment[]): boolean {
+    return this.checkLoggedIn(segments.join('/'));
   }
 
   checkLoggedIn(url: string): boolean {
