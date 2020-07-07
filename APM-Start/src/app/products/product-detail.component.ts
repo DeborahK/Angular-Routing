@@ -14,7 +14,7 @@ export class ProductDetailComponent {
 
   constructor(private productService: ProductService) { }
 
-  getProduct(id: number) {
+  getProduct(id: number): void {
     this.productService.getProduct(id).subscribe({
       next: product => this.onProductRetrieved(product),
       error: err => this.errorMessage = err

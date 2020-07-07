@@ -12,7 +12,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) { }
 
-  login(loginForm: NgForm) {
+  login(loginForm: NgForm): void {
     if (loginForm && loginForm.valid) {
       const userName = loginForm.form.value.userName;
       const password = loginForm.form.value.password;
