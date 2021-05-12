@@ -19,7 +19,7 @@ import { SelectiveStrategy } from './selective-strategy.service';
       },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
-    ], { enableTracing: true, preloadingStrategy: SelectiveStrategy })
+    ], { enableTracing: true, preloadingStrategy: SelectiveStrategy, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })
