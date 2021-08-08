@@ -30,6 +30,7 @@ export class ProductEditComponent implements OnInit {
     this.currentProduct = value;
     // Clone the object to retain a copy
     this.originalProduct = value ? { ...value } : null;
+    if (!!value.tags) this.originalProduct.tags = [ ...value.tags ]; // clone the product tags
   }
 
   constructor(private productService: ProductService,
