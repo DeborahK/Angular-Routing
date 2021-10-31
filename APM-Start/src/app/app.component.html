@@ -2,7 +2,7 @@
   <a class="navbar-brand">{{pageTitle}}</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link">Home</a>
+      <a class="nav-link" [routerLink]="['/welcome']">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link">Product List</a>
@@ -31,5 +31,5 @@
   </ul>
 </nav>
 <div class="container">
-  <pm-home></pm-home>
+  <router-outlet></router-outlet>
 </div>
