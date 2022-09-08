@@ -3,7 +3,12 @@ Materials for the ["Angular Routing"](http://bit.ly/Angular-routing) course on P
 
 `APM-Start`: The starter files. **Use this to code along with the course**.
 
+`APM-Start v14`: The starter files updated to Angular v14. **Use this code to code along with the course using v14**.
+NOTE: The course was not updated to v14, so if starting with v14 code, some shown code will be slightly different, requiring initialized variables and strong typing.
+
 `APM-Final`: The completed files. Use this to see the completed solution from the course.
+
+`APM-Final v14`: The completed files updated to Angular v14. Use this to see the completed solution for the course in v14.
 
 See the `README.md` file under each folder for details on installing and running the application.
 
