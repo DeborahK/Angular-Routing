@@ -1,0 +1,75 @@
+.fa-exclamation {
+  color: red;
+}
+
+.wizard a {
+    background: #efefef;
+    display: inline-block;
+    margin-right: 5px;
+    min-width: 150px;
+    outline: none;
+    padding: 10px 40px 10px;
+    position: relative;
+    text-decoration: none;
+}
+
+.wizard a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+    /* Adds the cut out on the left side of the tab */
+.wizard a:before {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 24px inset transparent;
+    border-left: 20px solid #fff;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+
+    /* Adds the arrow on the right side of the tab */
+.wizard a:after {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 24px inset transparent;
+    border-left: 21px solid #efefef;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
+}
+
+    /* Squares the start and end of the tab bar */
+.wizard a:first-child:before,
+.wizard a:last-child:after {
+    border: none;
+}
+
+    /* Rounds the corners */
+.wizard a:first-child {
+    -webkit-border-radius: 8px 0 0 0px;
+    -moz-border-radius: 8px 0 0 0px;
+    border-radius: 8px 0 0 0px;
+}
+
+.wizard a:last-child {
+    -webkit-border-radius: 0 8px 0px 0;
+    -moz-border-radius: 0 8px 0px 0;
+    border-radius: 0 8px 0px 0;
+}
+
+.wizard .active {
+    background: #007ACC;
+    color: #fff;
+}
+
+    /* Adds the right arrow after the tab */
+.wizard .active:after {
+    border-left-color: #007ACC;
+}

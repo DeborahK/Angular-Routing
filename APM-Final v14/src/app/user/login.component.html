@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="login(loginForm)"
+          #loginForm="ngForm"
+          autocomplete="off">
+      <fieldset>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label"
+                 for="userNameId">User Name</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="userNameId"
+                   type="text"
+                   placeholder="User Name (required)"
+                   required
+                   ngModel
+                   name="userName"
+                   #userNameVar="ngModel"
+                   [ngClass]="{'is-invalid': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="userNameVar.errors?.['required']">
+                User name is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <label class="col-md-2 col-form-label"
+                 for="passwordId">Password</label>
+
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="passwordId"
+                   type="password"
+                   placeholder="Password (required)"
+                   required
+                   ngModel
+                   name="password"
+                   #passwordVar="ngModel"
+                   [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="passwordVar.errors?.['required']">
+                Password is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-4 offset-md-2">
+            <button class="btn btn-primary me-3"
+                    type="submit"
+                    style="width:80px"
+                    [disabled]="!loginForm.valid">
+              Log In
+            </button>
+            <button class="btn btn-outline-secondary"
+                    type="button"
+                    style="width:80px"
+                    [routerLink]="['/welcome']">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="alert alert-danger"
+       *ngIf="errorMessage">{{errorMessage}}
+  </div>
+</div>

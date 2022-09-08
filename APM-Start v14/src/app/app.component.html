@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand">{{pageTitle}}</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Product List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Add Product</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link">Welcome {{ userName }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Show Messages</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="!isLoggedIn">
+      <a class="nav-link">Log In</a>
+    </li>
+    <li class="nav-item"
+        *ngIf="isLoggedIn">
+      <a class="nav-link"
+         (click)="logOut()">Log Out</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <pm-home></pm-home>
+</div>
