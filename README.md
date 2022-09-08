@@ -8,7 +8,7 @@ NOTE: The course was not updated to v14, so if starting with v14 code, some show
 
 `APM-Final`: The completed files. Use this to see the completed solution from the course.
 
-`APM-Final`: The completed files updated to Angular v14. Use this to see the completed solution for the course in v14.
+`APM-Final v14`: The completed files updated to Angular v14. Use this to see the completed solution for the course in v14.
 
 See the `README.md` file under each folder for details on installing and running the application.
 
