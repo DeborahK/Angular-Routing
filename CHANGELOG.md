@@ -10,6 +10,8 @@
 
 #Changes made to the project files since its release:
 
+- September 8, 2022 - Updated the code to Angular v14. Angular is now strongly typed by default, so the code using v14 will be slightly different from that shown in the course. Every variable must be initialized and all types appropropriate defined. Minor changes to Bootstrap as well.
+
 - July 7, 2020 - Updated the code to Angular v10, which modified the packages. Minor changes such as adding function return types and using property shorthand.
 
 - February 2, 2020 - Updated the code to Angular v9, which modified the packages. The only code change was to undo a change required in Angular v8 regarding the `static` flag on `ViewChild`.
